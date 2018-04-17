@@ -1,7 +1,9 @@
 ﻿using AmberAndGrain.Models;
 using Dapper;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace AmberAndGrain.Services
 {
@@ -27,6 +29,17 @@ namespace AmberAndGrain.Services
                            ,@BarrelMaterial
                            ,@Creator)", recipe);
                 return numberCreated == 1;
+            }
+        }
+
+        public List<RecipeDto> GetAll()
+        {
+            using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
+            {
+                db.Open();
+
+                var result = db.Query<RecipeDto>("Select * from Recipes").ToList();
+                return result;
             }
         }
     }
