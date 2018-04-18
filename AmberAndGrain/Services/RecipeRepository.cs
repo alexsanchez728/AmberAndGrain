@@ -67,7 +67,7 @@ namespace AmberAndGrain.Services
                            ,PercentCorn = @PercentCorn
                            ,BarrelAge = @BarrelAge
                            ,BarrelMaterial = @BarrelMaterial
-                           ,Creator = @Creator)
+                           ,Creator = @Creator
                             where id = @id", new
                 {
                     recipe.Name,
